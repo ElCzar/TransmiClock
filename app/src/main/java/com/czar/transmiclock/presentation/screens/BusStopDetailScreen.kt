@@ -2,6 +2,7 @@ package com.czar.transmiclock.presentation.screens
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -26,8 +27,14 @@ import com.czar.transmiclock.presentation.viewmodels.BusViewModel
 @Composable
 fun BusStopDetailScreen(
     busStop: BusStop,
-    viewModel: BusViewModel
+    viewModel: BusViewModel,
+    onBusClick: () -> Unit
 ) {
+    LaunchedEffect(busStop.id) {
+        viewModel.busStop.value = busStop
+        viewModel.fetchBuses()
+    }
+
     TransmiClockTheme {
         AppScaffold {
             val listState = rememberTransformingLazyColumnState()
@@ -63,7 +70,10 @@ fun BusStopDetailScreen(
                     items(buses) { bus ->
                         BusCard(
                             bus = bus,
-                            onClick = {}
+                            onClick = {
+                                viewModel.selectedBus.value = bus
+                                onBusClick()
+                            }
                         )
                     }
                 }

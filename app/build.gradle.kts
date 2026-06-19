@@ -33,6 +33,7 @@ android {
         buildConfigField("String", "APPID", "\"${secretsProperties["APPID"]}\"")
         buildConfigField("String", "URL_PARADEROS", "\"${secretsProperties["URL_PARADEROS"]}\"")
         buildConfigField("String", "URL_BUSES_PARADERO", "\"${secretsProperties["URL_BUSES_PARADERO"]}\"")
+        buildConfigField("String", "URL_LOCALIZACION_BUSES", "\"${secretsProperties["URL_LOCALIZACION_BUSES"]}\"")
     }
 
     buildTypes {
@@ -56,12 +57,14 @@ android {
 dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.activity.compose)
+    implementation(libs.logging.interceptor)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material3)
     implementation(libs.compose.navigation)
     implementation(libs.compose.ui.tooling)
     implementation(libs.core.splashscreen)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.material3)
     implementation(libs.play.services.wearable)
     implementation(libs.ui)
     implementation(libs.ui.graphics)
