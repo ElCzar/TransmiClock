@@ -36,7 +36,7 @@ jobs:
           BUILD_TOOLS=$(ls $ANDROID_HOME/build-tools | sort -V | tail -1)
           $ANDROID_HOME/build-tools/$BUILD_TOOLS/apksigner sign \
             --ks keystore.jks \
-            --ks-alias "${{ secrets.KEY_ALIAS }}" \
+            --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
             --ks-pass pass:"${{ secrets.KEY_STORE_PASSWORD }}" \
             --out app/build/outputs/apk/release/transmiclock-signed.apk \
             $UNSIGNED_APK
