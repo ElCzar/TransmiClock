@@ -2,6 +2,7 @@ package com.czar.transmiclock.presentation.screens
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import androidx.wear.compose.material3.lazy.transformedHeight
+import com.czar.transmiclock.presentation.components.BusStopCard
 import com.czar.transmiclock.presentation.components.SearchHeaderContent
 import com.czar.transmiclock.presentation.theme.TransmiClockTheme
 import com.czar.transmiclock.presentation.viewmodels.BusStopViewModel
@@ -23,6 +25,7 @@ import com.czar.transmiclock.presentation.viewmodels.BusStopViewModel
 @Composable
 fun TransmiClockScreen(
     onSearch: () -> Unit,
+    onBusStopClick: () -> Unit,
     viewModel: BusStopViewModel
 ) {
     TransmiClockTheme {
@@ -30,6 +33,7 @@ fun TransmiClockScreen(
             val listState = rememberTransformingLazyColumnState()
             val transformationSpec = rememberTransformationSpec()
             var searchQuery by remember { mutableStateOf("") }
+            val history by viewModel.busStopHistory.collectAsState(initial = emptyList())
 
             ScreenScaffold(
                 scrollState = listState,
@@ -56,8 +60,19 @@ fun TransmiClockScreen(
                     item {
                         Text("\nHistorial\n")
                     }
+
                     // History Items
-                    /* TODO */
+                    history.forEach { busStop ->
+                        item {
+                            BusStopCard(
+                                busStop = busStop,
+                                onClick = {
+                                    viewModel.selectBusStop(busStop)
+                                    onBusStopClick()
+                                }
+                            )
+                        }
+                    }
                 }
             }
         }
