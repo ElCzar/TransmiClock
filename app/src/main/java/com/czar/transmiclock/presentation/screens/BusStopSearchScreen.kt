@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
@@ -36,7 +37,7 @@ fun BusStopSearchScreen(
         AppScaffold {
             val listState = rememberTransformingLazyColumnState()
             val transformationSpec = rememberTransformationSpec()
-            var searchQuery by remember { mutableStateOf("") }
+            var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
 
             val busStops by viewModel.searchResults
             val isLoading by viewModel.isLoading

@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.AppScaffold
@@ -32,7 +33,7 @@ fun TransmiClockScreen(
         AppScaffold {
             val listState = rememberTransformingLazyColumnState()
             val transformationSpec = rememberTransformationSpec()
-            var searchQuery by remember { mutableStateOf("") }
+            var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
             val history by viewModel.busStopHistory.collectAsState(initial = emptyList())
 
             ScreenScaffold(
