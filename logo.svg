@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+
+    <!-- Square background -->
+    <rect width="108" height="108" fill="#FFFFFF"/>
+
+    <!-- Group: 80% scale centered -->
+    <g transform="translate(10.8, 10.8) scale(0.8)">
+
+        <!-- Clock circle -->
+        <circle cx="54" cy="54" r="45" fill="none" stroke="#2C333A" stroke-width="2"/>
+
+        <!-- 4 cardinal tick marks -->
+        <path fill="none" stroke="#2C333A" stroke-width="2"
+            d="M54,9L54,14 M54,99L54,94 M9,54L14,54 M99,54L94,54"/>
+
+        <!-- Diagonal tick marks -->
+        <path fill="none" stroke="#2C333A" stroke-width="2"
+            d="M76.5,15L74,19.3 M31.5,93L34,88.7 M15,31.5L19.3,34 M93,76.5L88.7,74"/>
+        <path fill="none" stroke="#2C333A" stroke-width="2"
+            d="M93,31.5L88.7,34 M15,76.5L19.3,74 M76.5,93L74,88.7 M31.5,15L34,19.3"/>
+
+        <!-- Bus body left (red) -->
+        <path fill="#E23E3E"
+            d="M37,47c-2.2,0 -4,1.8 -4,4v8c0,2.2 1.8,4 4,4h17v-16h-17z"/>
+
+        <!-- Bus body right (blue) -->
+        <path fill="#1565C0"
+            d="M54,47h17c2.2,0 4,1.8 4,4v8c0,2.2 -1.8,4 -4,4h-17v-16z"/>
+
+        <!-- Windows -->
+        <path fill="#FFFFFF"
+            d="M39,49h4v4h-4z M46,49h4v4h-4z M52,49h4v4h-4z M59,49h4v4h-4z M66,49h4v4h-4z"/>
+
+        <!-- Wheels -->
+        <circle cx="44" cy="63" r="2.5" fill="#777777"/>
+        <circle cx="64" cy="63" r="2.5" fill="#777777"/>
+
+        <!-- Clock hands -->
+        <path fill="none" stroke="#2C333A" stroke-width="2.5" stroke-linecap="round"
+            d="M54,54L42,42 M54,54L68,40"/>
+
+        <!-- Center dot -->
+        <circle cx="54" cy="54" r="1.5" fill="#2C333A"/>
+
+    </g>
+</svg>
