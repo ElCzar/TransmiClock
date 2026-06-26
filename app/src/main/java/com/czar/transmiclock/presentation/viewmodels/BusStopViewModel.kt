@@ -2,8 +2,8 @@ package com.czar.transmiclock.presentation.viewmodels
 
 import android.app.Application
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.czar.transmiclock.adapter.BusStopHistoryRepository
 import com.czar.transmiclock.adapter.TransmilenioApiAdapter
@@ -18,6 +18,7 @@ class BusStopViewModel(application: Application) : AndroidViewModel(application)
     private val api = TransmilenioApiAdapter()
     private val historyRepo = BusStopHistoryRepository(application)
 
+    val searchQuery = mutableStateOf(TextFieldValue(""))
     val searchResults = mutableStateOf<List<BusStop>>(emptyList())
     val selectedBusStop = mutableStateOf<BusStop?>(null)
     val isLoading = mutableStateOf(false)

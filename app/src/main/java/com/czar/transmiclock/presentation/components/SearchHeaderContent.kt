@@ -57,7 +57,10 @@ fun SearchHeaderContent(
             .fillMaxWidth()
             .height(36.dp)
             .clip(RoundedCornerShape(50))
-            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .background(
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                shape = RoundedCornerShape(50)
+            )
             .clickable { focusRequester.requestFocus() },
         contentAlignment = Alignment.CenterStart,
     ) {
