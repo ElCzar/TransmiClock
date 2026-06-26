@@ -3,8 +3,6 @@ package com.czar.transmiclock.presentation.screens
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -36,7 +34,7 @@ fun BusStopSearchScreen(
         AppScaffold {
             val listState = rememberTransformingLazyColumnState()
             val transformationSpec = rememberTransformationSpec()
-            var searchQuery by remember { mutableStateOf("") }
+            var searchQuery by viewModel.searchQuery
 
             val busStops by viewModel.searchResults
             val isLoading by viewModel.isLoading

@@ -2,7 +2,6 @@ package com.czar.transmiclock.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,6 +26,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material3.Icon
@@ -44,8 +44,8 @@ import com.czar.transmiclock.R
  */
 @Composable
 fun SearchHeaderContent(
-    query: String,
-    onQueryChange: (String) -> Unit,
+    query: TextFieldValue,
+    onQueryChange: (TextFieldValue) -> Unit,
     onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -57,7 +57,10 @@ fun SearchHeaderContent(
             .fillMaxWidth()
             .height(36.dp)
             .clip(RoundedCornerShape(50))
-            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .background(
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                shape = RoundedCornerShape(50)
+            )
             .clickable { focusRequester.requestFocus() },
         contentAlignment = Alignment.CenterStart,
     ) {
@@ -76,18 +79,17 @@ fun SearchHeaderContent(
             Spacer(modifier = Modifier.width(6.dp))
             BasicTextField(
                 value = query,
-                onValueChange = { onQueryChange(it) },
+                onValueChange = onQueryChange,
                 modifier = Modifier
                     .weight(1f)
-                    .focusRequester(focusRequester)
-                    .focusable(),
+                    .focusRequester(focusRequester),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Search
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {
-                        onSearch(query)
+                        onSearch(query.text)
                         keyboardController?.hide()
                     }
                 ),
@@ -98,7 +100,7 @@ fun SearchHeaderContent(
                 cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
                 decorationBox = { innerTextField ->
                     Box {
-                        if (query.isEmpty()) {
+                        if (query.text.isEmpty()) {
                             Text(
                                 text = "Buscar parada…",
                                 style = MaterialTheme.typography.labelMedium,

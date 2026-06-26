@@ -31,6 +31,9 @@ class MainActivity : ComponentActivity() {
                         onSearch = {
                             navController.navigate(Routes.BUS_STOP_SEARCH)
                         },
+                        onBusStopClick = {
+                            navController.navigate(Routes.BUS_STOP_DETAIL)
+                        },
                         viewModel = busStopViewModel
                     )
                 }
