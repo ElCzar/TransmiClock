@@ -29,6 +29,7 @@ class BusStopViewModel(application: Application) : AndroidViewModel(application)
 
     fun search(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
+            searchResults.value = emptyList()
             isLoading.value = true
             error.value = null
             try {

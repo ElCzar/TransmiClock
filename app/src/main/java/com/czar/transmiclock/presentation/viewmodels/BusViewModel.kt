@@ -22,6 +22,7 @@ class BusViewModel : ViewModel() {
 
     fun fetchBuses() {
         viewModelScope.launch(Dispatchers.IO) {
+            buses.value = emptyList()
             isLoading.value = true
             error.value = null
             try {
