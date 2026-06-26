@@ -27,20 +27,27 @@ jobs:
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
-
+      
       - name: Sign APK
-        uses: r0adkll/sign-android-release@v1
-        id: sign_apk
-        with:
-          releaseDirectory: app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY_BASE64 }}
-          alias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-
+        run: |
+          UNSIGNED_APK=$(find app/build/outputs/apk/release -name "*.apk" | head -1)
+          echo "${{ secrets.SIGNING_KEY_BASE64 }}" | base64 --decode > keystore.jks
+      
+          BUILD_TOOLS=$(ls $ANDROID_HOME/build-tools | sort -V | tail -1)
+          $ANDROID_HOME/build-tools/$BUILD_TOOLS/apksigner sign \
+            --ks keystore.jks \
+            --ks-alias "${{ secrets.KEY_ALIAS }}" \
+            --ks-pass pass:"${{ secrets.KEY_STORE_PASSWORD }}" \
+            --out app/build/outputs/apk/release/transmiclock-signed.apk \
+            $UNSIGNED_APK
+      
+          rm keystore.jks
+          echo "SIGNED_APK=app/build/outputs/apk/release/transmiclock-signed.apk" >> $GITHUB_ENV
+      
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.sign_apk.outputs.signedReleaseFile }}
+          files: ${{ env.SIGNED_APK }}
           generate_release_notes: true 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
