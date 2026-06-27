@@ -53,13 +53,13 @@ class TransmilenioApiAdapter {
         return parsed.listaRutas.map { it.toBus() }
     }
 
-    fun getBusesLocation(busStopCodigo: String, busCodigo: String, busId: String): List<BusLocation> {
+    fun getBusesLocation(busStopCodigo: String, busCodigo: String, busId: String, busName: String = "", busDistancia: String = "100"): List<BusLocation> {
         val postBody = json.encodeToString(mapOf(
             "estacion" to busStopCodigo,
             "ruta" to busCodigo,
             "idRuta" to busId,
-            "Nombre" to "",
-            "Distancia" to ""
+            "Nombre" to busName,
+            "Distancia" to busDistancia
         ))
 
         val request = Request.Builder()
@@ -71,6 +71,7 @@ class TransmilenioApiAdapter {
         client.newCall(request).execute().use { response ->
             if (!response.isSuccessful) throw IOException("Unexpected code $response")
             val body = response.body.string()
+            if (body.isBlank()) return emptyList()
             val parsed = json.decodeFromString<List<BusLocationDto>>(body)
             return parsed.map { it.toBusLocation() }
         }

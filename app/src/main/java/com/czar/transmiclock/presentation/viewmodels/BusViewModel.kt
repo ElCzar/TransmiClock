@@ -8,7 +8,9 @@ import com.czar.transmiclock.data.Bus
 import com.czar.transmiclock.data.BusLocation
 import com.czar.transmiclock.data.BusStop
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 class BusViewModel : ViewModel() {
     private val api = TransmilenioApiAdapter()
@@ -38,16 +40,29 @@ class BusViewModel : ViewModel() {
 
     fun fetchBusLocation() {
         viewModelScope.launch(Dispatchers.IO) {
+            busLocations.value = emptyList()
             isLoading.value = true
             error.value = null
             try {
-                busLocations.value = api.getBusesLocation(
-                    busStop.value?.codigo.toString(),
-                    selectedBus.value?.codigo.toString(),
-                    selectedBus.value?.id.toString()
-                )
+                var result = emptyList<BusLocation>()
+                repeat(3) { attempt ->
+                    result = api.getBusesLocation(
+                        busStop.value?.codigo.toString(),
+                        selectedBus.value?.codigo.toString(),
+                        selectedBus.value?.id.toString(),
+                        if (busStop.value?.codigo?.startsWith("TM") ?: false) {
+                            selectedBus.value?.nombre ?: ""
+                        } else {
+                            busStop.value?.nombre ?: ""
+                        }
+                    )
+                    if (result.isNotEmpty()) return@repeat
+                    if (attempt < 2) delay(2000.milliseconds)
+                }
+                busLocations.value = result
             } catch (e: Exception) {
                 e.printStackTrace()
+                error.value = e.message
             } finally {
                 isLoading.value = false
             }
