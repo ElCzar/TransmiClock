@@ -7,13 +7,28 @@ TransmiClock es una aplicación de código abierto para Wear OS que permite cons
 
 ## Capturas de pantalla
 
-<p align="center">
-  <img src=".github/assets/screenshots/Screenshot_MainScreen.png" width="456" alt="Pantalla principal"/>
-  <img src=".github/assets/screenshots/Screenshot_Search.png" width="456" alt="Búsqueda de parada"/>
-  <img src=".github/assets/screenshots/Screenshot_SearchResults.png" width="456" alt="Resultados de búsqueda"/>
-  <img src=".github/assets/screenshots/Screenshot_BusesPerStation.png" width="456" alt="Rutas por parada"/>
-  <img src=".github/assets/screenshots/Screenshot_BusLocations.png" width="456" alt="Ubicación de buses en tiempo real"/>
-</p>
+<table>
+  <tr>
+    <td><img src=".github/assets/screenshots/Screenshot_MainScreen.png" width="200" alt="Pantalla principal"/></td>
+    <td><b>Pantalla principal</b><br/>Muestra las paradas guardadas en tu historial. Toca cualquiera para ver sus rutas disponibles de inmediato.</td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/screenshots/Screenshot_Search.png" width="200" alt="Búsqueda de parada"/></td>
+    <td><b>Búsqueda de parada</b><br/>Toca la barra de búsqueda para abrir el teclado e ingresa el nombre o código de la parada.</td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/screenshots/Screenshot_SearchResults.png" width="200" alt="Resultados de búsqueda"/></td>
+    <td><b>Resultados de búsqueda</b><br/>Se muestran las paradas que coinciden con tu búsqueda. Toca una parada para ver todas las rutas que la sirven.</td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/screenshots/Screenshot_BusesPerStation.png" width="200" alt="Rutas por parada"/></td>
+    <td><b>Rutas por parada</b><br/>Muestra todas las rutas disponibles en la parada seleccionada. Toca una ruta para consultar la ubicación en tiempo real de sus buses.</td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/screenshots/Screenshot_BusLocations.png" width="200" alt="Ubicación de buses"/></td>
+    <td><b>Ubicación en tiempo real</b><br/>Consulta los buses disponibles y su distancia aproximada a la parada. <br/><br/>💡 <i>Desliza desde arriba hacia abajo para recargar la información sin salir de la pantalla.</i></td>
+  </tr>
+</table>
 
 ---
 
