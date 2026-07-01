@@ -6,13 +6,19 @@
 TransmiClock es una aplicación de código abierto para Wear OS que permite consultar en tiempo real los buses disponibles en cualquier parada de Bogotá, directamente desde tu reloj inteligente, sin necesidad de sacar el celular.
 
 ## Capturas de pantalla
-> 🚧 Próximamente
+
+<p align="center">
+  <img src=".github/assets/screenshots/Screenshot_MainScreen.png" width="456" alt="Pantalla principal"/>
+  <img src=".github/assets/screenshots/Screenshot_Search.png" width="456" alt="Búsqueda de parada"/>
+  <img src=".github/assets/screenshots/Screenshot_SearchResults.png" width="456" alt="Resultados de búsqueda"/>
+  <img src=".github/assets/screenshots/Screenshot_BusesPerStation.png" width="456" alt="Rutas por parada"/>
+  <img src=".github/assets/screenshots/Screenshot_BusLocations.png" width="456" alt="Ubicación de buses en tiempo real"/>
+</p>
 
 ---
 
 # Requisitos
 - Reloj inteligente con **Wear OS 3.0 o superior** (API 30+)
-- [OPCIONAL] Aplicación **Wear Installer 2** instalada en el teléfono acompañante para la instalación de la aplicación
 
 ---
 
@@ -63,6 +69,24 @@ Descarga el [SDK Platform Tools](https://developer.android.com/studio/releases/p
 ```bash
 brew install android-platform-tools
 ```
+
+</details>
+
+<details>
+<summary>Android</summary>
+
+La forma más sencilla de instalar TransmiClock desde Android es usando [Wear Installer 2](https://play.google.com/store/apps/details?id=org.freepoc.wearinstaller2), una aplicación gratuita que permite instalar APKs en tu reloj directamente desde el teléfono, sin necesidad de un computador.
+
+**Antes de comenzar**, activa la depuración en tu reloj siguiendo el paso 2 de esta guía.
+
+1. Descarga e instala **Wear Installer 2** en tu teléfono.
+2. Abre la app e ingresa la dirección IP de tu reloj en el campo inferior y presiona **DONE**.
+3. Toca los tres puntos en la esquina superior derecha y selecciona **Pair with watch**.
+4. En la sección inferior presiona **ENABLE** e ingresa el **código de emparejamiento**, un espacio, y el **puerto de emparejamiento** que aparecen en tu reloj. Luego presiona **DONE**.
+5. Es posible que debas esperar unos minutos hasta que el emparejamiento se complete y seas devuelto a la pantalla principal.
+6. Ingresa el **puerto de conexión** que aparece en la pantalla principal de depuración inalámbrica de tu reloj y presiona **DONE**.
+7. Toca **Custom APK** en la esquina superior derecha, selecciona el APK descargado y presiona **INSTALL**.
+8. Espera unos segundos, TransmiClock aparecerá instalado en tu reloj.
 
 </details>
 
